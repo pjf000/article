@@ -1,0 +1,124 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.test.article</groupId>
+        <artifactId>article</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>article-impl</artifactId>
+    <packaging>jar</packaging>
+
+    <name>article-impl</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.test.article</groupId>
+            <artifactId>article-service</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.test.article</groupId>
+            <artifactId>article-dao</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.test.article</groupId>
+            <artifactId>article-common</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+        </dependency>
+        <!--此处添加一个mysql-connector-java依赖可以防止找不到jdbc Driver-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <!-- 本地开发环境 -->
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <!-- 测试环境 -->
+            <id>test</id>
+            <properties>
+                <env>test</env>
+            </properties>
+        </profile>
+        <profile>
+            <!-- 预发布 -->
+            <id>pre</id>
+            <properties>
+                <env>pre</env>
+            </properties>
+        </profile>
+        <profile>
+            <!-- 生产环境 -->
+            <id>prod</id>
+            <properties>
+                <env>prod</env>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <finalName>${project.artifactId}-${env}-${project.version}</finalName>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <filters>
+            <filter>src/main/resources/properties/${env}.properties</filter>
+            <filter>src/main/resources/properties/common.properties</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>

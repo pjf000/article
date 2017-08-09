@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE generatorConfiguration  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+      "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+     <!-- 生成中文注释 -->
+     <!-- http://blog.csdn.net/u013632755/article/details/51429341 -->
+     <!-- 插件 -->
+     <!-- <plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<configuration>
+					<verbose>true</verbose>
+					<overwrite>true</overwrite>
+				</configuration>
+			</plugin> -->
+	<!-- jdbc jar包 classPathEntry 是引用的jdbc的类路径 -->
+	<classPathEntry	location="C:/Users/JeffPeng/.m2/repository/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar" />
+
+	<!-- id= -->
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+
+
+		<!-- 抑制警告 -->
+		<property name="suppressTypeWarnings" value="true" />
+
+		<!-- generate entity时，生成hashcode和equals方法 -->
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<!-- generate entity时，生成serialVersionUID -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<!-- 这个插件只会增加字符串字段映射到一个JDBC字符的方法 <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" 
+			/> -->
+		<!-- genenat entity时,生成toString -->
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+
+		<commentGenerator>
+			<!-- suppressAllComments 抑制生成代码的注释 -->
+			<!-- suppressDate 是用来除去时间信息的，这在配合类似subversion的代码管理工具时使用很有效，因为可以减少没有必要的注释迁入 -->
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+
+		<!-- 数据库驱动 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+						connectionURL="jdbc:mysql://10.1.16.231:3306/jeff_db" userId="root"
+						password="123456">
+		</jdbcConnection>
+
+		<!-- javaTypeResolver式类型转换的信息 -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- generate Model -->
+		<!-- 生成的实体类 -->
+		<javaModelGenerator targetPackage="com.test.article.dao.model"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- generate xml -->
+		<!-- 生成的Mapper文件 -->
+		<sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!--生成dao接口的配置 -->
+		<javaClientGenerator targetPackage="com.test.article.dao.dao"
+			targetProject="src/main/java" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+
+		
+        <!-- esb_service_base, esb_field_match, esb_fws_address, esb_fws_info, 
+			esb_fws_interface, esb_value_match, flow_business_base, flow_business_info, 
+			flow_channel, flow_channel_business -->
+        
+		<!-- 要生成的表 tableName=表名 domainObjectName=实体类名称 -->
+
+		
+		<table tableName="t_user" domainObjectName="TUser"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false" />
+		
+
+	</context>
+
+	<!-- 项目 右键 》run as 》 maven bulid 》弹出对话框 》在goals中输入mybatis-generator:generate 
+		或者 点击select 》选择你的mybatis插件 》apply 》run > -->
+</generatorConfiguration>  
