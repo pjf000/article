@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+    <strategy logicTable="t_user" class="com.test.article.dao.sharding.UserShardStrategy"/>
+</configs>

@@ -59,9 +59,17 @@ http://www.springframework.org/schema/context/spring-context.xsd http://www.alib
         <!-- 扫描sql配置文件:mapper需要的xml文件 -->
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
         <property name="plugins">
-            <bean class="com.test.article.dao.util.PageInterceptor">
-                <property name="databaseType" value="mysql"></property>
-            </bean>
+            <list>
+
+                <bean class="com.test.article.dao.util.PageInterceptor">
+                    <property name="databaseType" value="mysql"></property>
+                </bean>
+                <bean class="com.test.article.dao.util.ShardPluginInterceptor">
+                    <property name="table2Db" value="classpath:sharding/table2db.properties"></property>
+                    <property name="configLocation" value="sharding/mybatis-sharding-config.xml"></property>
+                </bean>
+
+            </list>
         </property>
     </bean>
     <!-- 4.配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->

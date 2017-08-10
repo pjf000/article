@@ -15,6 +15,7 @@
     <module>article-service</module>
     <module>article-impl</module>
     <module>article-web</module>
+      <module>common-mysql</module>
   </modules>
 
 

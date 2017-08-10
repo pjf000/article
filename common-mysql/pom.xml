@@ -7,10 +7,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>article-dao</artifactId>
+    <artifactId>common-mysql</artifactId>
     <packaging>jar</packaging>
 
-    <name>article-dao</name>
+    <name>common-mysql</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -24,51 +24,43 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
-
-
-        <!-- 阿里巴巴数据库连接池 -->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
+            <groupId>com.github.jsqlparser</groupId>
+            <artifactId>jsqlparser</artifactId>
+            <version>1.1</version>
         </dependency>
         <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.test.article</groupId>
-            <artifactId>article-common</artifactId>
-            <version>${parent.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.test.article</groupId>
-            <artifactId>common-mysql</artifactId>
-            <version>${parent.version}</version>
-        </dependency>
-
     </dependencies>
-
-
     <build>
         <plugins>
             <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.2</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <verbose>true</verbose>
-                    <overwrite>true</overwrite>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
         </plugins>
-
     </build>
 </project>
