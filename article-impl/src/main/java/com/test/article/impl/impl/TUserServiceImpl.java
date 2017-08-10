@@ -17,6 +17,11 @@ public class TUserServiceImpl implements TUserService {
     }
 
     public Integer insert(TUser user) {
-        return tUserMapper.insertSelective(user);
+        tUserMapper.insertSelective(user);
+        if(user.getId()!=null){
+            return user.getId();
+        }else{
+            return 0;
+        }
     }
 }

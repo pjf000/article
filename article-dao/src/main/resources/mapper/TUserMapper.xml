@@ -23,7 +23,7 @@
     delete from t_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.test.article.common.model.TUser" >
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id"  parameterType="com.test.article.common.model.TUser" >
     insert into t_user (id, username, password, 
       realname, sex, email, 
       create_time)
@@ -31,7 +31,7 @@
       #{realname,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{email,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.test.article.common.model.TUser" >
+  <insert id="insertSelective"  useGeneratedKeys="true" keyProperty="id" parameterType="com.test.article.common.model.TUser" >
     insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
